@@ -1,0 +1,43 @@
+{% extends 'headerfooter.html' %}
+{% block content %}
+<div class="p-5 container">
+        <div class="pt-3">
+                {% if DomainSearch %}
+                <center>
+                        <div class="special pb-4">
+                                <div id="search">
+                                        <div class="SearchSection rounded-pill ">
+                                            <form class="d-flex justify-content-center"  action="{% url 'DomainSearchResultPage' %}" method="POST">
+                                                {% csrf_token %}
+                                                <textarea class="rounded-left py-2 px-4" style="resize: none; height: 45px;" name="DomainSearch" id="" cols="25" rows="1">{{DomainSearch}}</textarea>
+                                                <button style="height: 45px;" class="btnx btn-secondary rounded-right px-3 text-white" type="submit">Search</button>
+                                            </form>
+                                        </div>
+                                </div>
+                        </div>
+
+                        <div class="bg-secondary rounded-pill">
+                                <h2 class="p-2" >
+                                        <form action="{% url 'UploadDataView' %}" method="POST">
+                                        {% csrf_token %}
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                        <textarea class="bg-secondary" name="DomainSearch" id="" cols="15" rows="" style="height:45px; resize: none; pointer-events: none; border: none; outline: none;" >{{DomainSearch}}</textarea>
+                                                        <button style="height: 45px;" class="btn btn-info" type="submit">Buy </button>
+                                                </div>
+                                        </form> 
+                                </h2>
+                        </div>
+                </center>
+                {% elif DomainNameAlreadyRegistered %}
+                <center>
+                        <h3>Domain name is not valid</h3>
+                        <h4 class="text-muted">{{DomainNameAlreadyRegistered }}  </h4>
+                </center>
+                {% else%}
+                <center>
+                        <h2>Please put a Valid domain name</h2>
+                </center>
+                {% endif %}
+        </div>
+</div>
+{% endblock %}
