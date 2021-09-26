@@ -1,0 +1,72 @@
+{% extends 'headerfooter.html' %}
+{% block content %}
+<div class="pt-5 container">
+        <div>
+                <center>
+                        <h2>Hello World ? </h2>
+                        {% if DomainSearch %}
+                        <div>{{DomainSearch}}</div>
+                        {% else %}
+                        <div>Surpraise</div>
+                        {% endif %}
+                </center>
+        </div>
+        <div>
+                <div class="py-3">
+                        <form action="{% url 'UploadData' %}" method="POST">
+                                {% csrf_token %}
+                                <div>
+                                        <label for="">First Name</label>
+                                        <input name="FirstName" type="text">
+                                </div>
+                                <div>
+                                        <label for="">Last Name</label>
+                                        <input name="LastName" type="text">
+                                </div>
+                                <div>
+                                        <label for="">Company Name</label>
+                                        <input name="CompanyName" type="text">
+                                </div>
+                                <div>
+                                        <label for="">Job Title</label>
+                                        <input name="JobTitle" type="text">
+                                </div>
+                                <div>
+                                        <label for="">Address</label>
+                                        <input name="Address" type="text">
+                                </div>
+                                <div>
+                                        <label for="">City</label>
+                                        <input name="City" type="text">
+                                </div>
+                                <div>
+                                        <label for="">State</label>
+                                        <input name="State" type="text">
+                                </div>
+                                <div>
+                                        <label for="">Country</label>
+                                        <input name="Country" type="text">
+                                </div>
+                                <div>
+                                        <label for="">Phone Number</label>
+                                        <input name="PhoneNumber" type="text">
+                                </div>
+                                <div>
+                                        <label for="">Email</label>
+                                        <input name="Email" type="text">
+                                </div>
+                                <!-- display none  -->
+                                <div style="display: none;">
+                                        <textarea name="UserName" id="" cols="30" rows="10">{{user.username}}</textarea>
+                                        {% if DomainSearch %}
+                                        <textarea name="DnsName" id="" cols="30" rows="10">{{DomainSearch}}</textarea>
+                                        {% else %}
+                                        <div>Surpraise??</div>
+                                        {% endif %}
+                                </div>
+                                <button class="btn btn-danger" type="submit">Submit</button>
+                        </form>
+                </div>
+        </div>
+</div>
+{% endblock %}
